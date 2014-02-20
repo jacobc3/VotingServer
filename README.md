@@ -3,30 +3,9 @@ VotingServer
 for CS1631 Pittsburgh University
 
 Author:
-UI @Shuwen Zhou (jacobc3@github)
-
+UI @Shuwen Zhou (jacobc3@github)\n
 Backgournd @Long Pham (mlsnpham@github)
 
 An Android application for counting voting via SMS
-
-
-
-
-
-
-
-================= Notes for developer ====================
-
-UI folder:
-/src/ui/
-/res/
-/libs/
-/gen/
-/assets/
-Please DO NOT touch those files unless you are UI developer
-
-
-Background folder:
-
 
 this page is last edit: 2014/02/19

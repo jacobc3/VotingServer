@@ -34,7 +34,7 @@
         android:text="@string/chart_b" />
 
     <TextView
-        android:id="@+id/sms_tv"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/start_b"

@@ -1,17 +1,12 @@
-package ui;
-
-import com.example.votingserver.R;
+package com.example.votingserver;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.telephony.SmsMessage;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -53,28 +48,4 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-
-	public void onResume(){
-		Log.i("cs.fsu", "smsActivity : onResume");
-		super.onResume();
-		setContentView(R.layout.activity_main);
-
-		Intent intent = getIntent();
-		Bundle bundle = intent.getBundleExtra("mySMS");
-
-		if (bundle != null) {
-			Object[] pdus = (Object[])bundle.get("pdus");
-			SmsMessage sms = SmsMessage.createFromPdu((byte[])pdus[0]);
-			Log.i("cs.fsu", "smsActivity : SMS is <" +  sms.getMessageBody() +">");
-			
-			//strip flag
-			String message = sms.getMessageBody();
-			while (message.contains("FLAG"))
-				message = message.replace("FLAG", "");
-			
-			TextView tx = (TextView) findViewById(R.id.sms_tv);
-			tx.setText(message);			
-		} else
-			Log.i("cs.fsu", "smsActivity : NULL SMS bundle");
-	}
 }
