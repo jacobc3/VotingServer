@@ -34,7 +34,7 @@
         android:text="@string/chart_b" />
 
     <TextView
-        android:id="@+id/sms1_tv"
+        android:id="@+id/sms0_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/start_b"
@@ -43,10 +43,10 @@
         android:text="TextView" />
 
     <TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/filter_name" />
-    
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_name" />
+
     <Button
         android:id="@+id/stop_b"
         android:layout_width="wrap_content"
@@ -55,5 +55,47 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="45dp"
         android:text="@string/stop_b" />
+
+    <TextView
+        android:id="@+id/sms1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sms0_tv"
+        android:layout_below="@+id/sms0_tv"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/sms2_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sms1_tv"
+        android:layout_below="@+id/sms1_tv"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/sms3_tv222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sms2_tv"
+        android:layout_below="@+id/sms2_tv"
+        android:layout_marginTop="57dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/sms4_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sms2_tv"
+        android:layout_below="@+id/sms2_tv"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/sms5_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sms2_tv"
+        android:layout_below="@+id/sms4_tv"
+        android:text="TextView" />
 
 </RelativeLayout>

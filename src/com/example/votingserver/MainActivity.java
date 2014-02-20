@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Log.i(TAG, "onCreate()");
-		Button startB = (Button) findViewById(R.id.setcandidate_b);
+		Button startB = (Button) findViewById(R.id.start_b);
 		startB.setClickable(true);
 		startB.setOnClickListener(new OnClickListener() {
 			@Override
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 		tvs[0] = (TextView) findViewById(R.id.sms0_tv);
 		tvs[1] = (TextView) findViewById(R.id.sms1_tv);
 		tvs[2] = (TextView) findViewById(R.id.sms2_tv);
-		tvs[3] = (TextView) findViewById(R.id.sms3_tv);
+		tvs[3] = (TextView) findViewById(R.id.sms3_tv222);
 		tvs[4] = (TextView) findViewById(R.id.sms4_tv);
 		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
 		mIntentReceiver = new BroadcastReceiver() {
