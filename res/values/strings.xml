@@ -11,5 +11,6 @@
     <string name="title_activity_setup">SetupActivity</string>
     <string name="setup_candidate_tv">Number of Candidate</string>
     <string name="title_activity_chart">View Chart</string>
+    <string name="filter_name">com.sensitiver.VotingServer</string>
 
 </resources>

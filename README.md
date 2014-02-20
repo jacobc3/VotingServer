@@ -15,7 +15,7 @@ An Android application for counting voting via SMS
 
 
 
-Notes:
+================= Notes for developer ====================
 
 UI folder:
 /src/ui/

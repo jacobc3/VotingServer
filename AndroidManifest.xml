@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.votingserver.MainActivity"
+            android:name="ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.votingserver.SetupActivity"
+            android:name="ui.SetupActivity"
             android:label="@string/title_activity_setup" >
         </activity>
         <activity
-            android:name="com.example.votingserver.ChartActivity"
+            android:name="ui.ChartActivity"
             android:label="@string/title_activity_chart" >
         </activity>
     </application>
