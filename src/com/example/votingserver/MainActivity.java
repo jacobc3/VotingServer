@@ -94,7 +94,17 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop() {
 		Log.i(TAG, "onResume()");
-		unregisterReceiver(mIntentReceiver);
 		super.onStop();
 	}
+	protected void onDestory() {
+		Log.i(TAG, "onResume()");
+		try{		
+			unregisterReceiver(mIntentReceiver);
+		}
+		catch(Exception e){
+			
+		}
+		super.onStop();
+	}
+	
 }
