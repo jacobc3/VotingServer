@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 
+    <color name="heavy">#A66500</color>
+    <color name="more">#FF9C00</color>
+    <color name="litte">#FFB540</color>
+    <color name="light">#FFC973</color>
+     -->
+    <color name="heavy">#04376C</color>
+    <color name="more">#0D58A6</color>
+    <color name="litte">#4188D2</color>
+    <color name="light">#689CD2</color>
+</resources>

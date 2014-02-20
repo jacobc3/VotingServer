@@ -1,7 +1,10 @@
 package com.example.votingserver;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -12,36 +15,66 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
+	// TODO on destroy : auto stop and save previous result
 
-	//TODO need to handle resume problem?
-	//TODO on destroy : auto stop and save previous result
+	private BroadcastReceiver mIntentReceiver;
+	private int smsCount = 0;
+	private TextView[] tvs = new TextView[5];
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		Button startB = (Button) findViewById(R.id.start_b);
+		Log.i(TAG, "onCreate()");
+		Button startB = (Button) findViewById(R.id.setcandidate_b);
 		startB.setClickable(true);
-		startB.setOnClickListener(new OnClickListener(){
+		startB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				 Intent i= new Intent(MainActivity.this, SetupActivity.class);
-                 startActivity(i);
-			}			
+				Intent i = new Intent(MainActivity.this, SetupActivity.class);
+				startActivity(i);
+			}
 		});
-		
+
 		Button stopB = (Button) findViewById(R.id.stop_b);
 		stopB.setClickable(false);
-		
+
 		Button chartB = (Button) findViewById(R.id.chart_b);
 		chartB.setClickable(false);
-		chartB.setOnClickListener(new OnClickListener(){
+		chartB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				 Intent i= new Intent(MainActivity.this, ChartActivity.class);
-                 startActivity(i);
-			}			
+				Intent i = new Intent(MainActivity.this, ChartActivity.class);
+				startActivity(i);
+			}
 		});
+		
+		tvs[0] = (TextView) findViewById(R.id.sms0_tv);
+		tvs[1] = (TextView) findViewById(R.id.sms1_tv);
+		tvs[2] = (TextView) findViewById(R.id.sms2_tv);
+		tvs[3] = (TextView) findViewById(R.id.sms3_tv);
+		tvs[4] = (TextView) findViewById(R.id.sms4_tv);
+		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
+		mIntentReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				String msg = intent.getStringExtra("get_msg");
+
+				// Process the sms format and extract body & phoneNumber
+				msg = msg.replace("\n", "");
+				String body = msg.substring(msg.lastIndexOf(":") + 1,
+						msg.length());
+				String pNumber = msg.substring(0, msg.lastIndexOf(":"));
+				Log.i(TAG, "OnReceiver()");
+				Log.i(TAG, "body is "+body);
+				Log.i(TAG, "pNumber is "+pNumber);				
+				tvs[smsCount%5].setText(pNumber+":"+body);
+				smsCount++;
+				//TODO DETECT DUPLICATE
+				//TODO Add to background system
+			}
+		};
+		this.registerReceiver(mIntentReceiver, intentFilter);	
 	}
 
 	@Override
@@ -50,7 +83,18 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
 
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.i(TAG, "onResume()");
+		
+	}
+	@Override
+	protected void onStop() {
+		Log.i(TAG, "onResume()");
+		unregisterReceiver(mIntentReceiver);
+		super.onStop();
+	}
 }
