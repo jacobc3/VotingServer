@@ -8,94 +8,89 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/start_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="@string/start_b" />
-
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/start_b"
-        android:layout_below="@+id/start_b"
-        android:layout_marginTop="26dp"
-        android:text="@string/incoming_tv" />
-
-    <Button
-        android:id="@+id/chart_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/chart_b" />
-
-    <TextView
-        android:id="@+id/sms0_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/start_b"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="17dp"
-        android:text="TextView" />
-
-    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/filter_name" />
 
     <Button
+        android:id="@+id/chart_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/start_b"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="62dp"
+        android:text="@string/chart_b" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/stop_b"
+        android:layout_below="@+id/stop_b"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/incoming_tv"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/start_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="23dp"
+        android:text="@string/start_b" />
+
+    <Button
         android:id="@+id/stop_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/start_b"
         android:layout_alignBottom="@+id/start_b"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="45dp"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_marginRight="68dp"
         android:text="@string/stop_b" />
 
-    <TextView
-        android:id="@+id/sms1_tv"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sms0_tv"
-        android:layout_below="@+id/sms0_tv"
-        android:text="TextView" />
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="21dp"
+        android:layout_toLeftOf="@+id/stop_b"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/sms2_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sms1_tv"
-        android:layout_below="@+id/sms1_tv"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/sms0_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="@string/incoming_tv" />
 
-    <TextView
-        android:id="@+id/sms3_tv222"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sms2_tv"
-        android:layout_below="@+id/sms2_tv"
-        android:layout_marginTop="57dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/sms1_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/incoming_tv" />
 
-    <TextView
-        android:id="@+id/sms4_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sms2_tv"
-        android:layout_below="@+id/sms2_tv"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/sms2_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/incoming_tv" />
 
-    <TextView
-        android:id="@+id/sms5_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sms2_tv"
-        android:layout_below="@+id/sms4_tv"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/sms3_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/incoming_tv" />
+
+        <TextView
+            android:id="@+id/sms4_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/incoming_tv" />
+    </LinearLayout>
 
 </RelativeLayout>

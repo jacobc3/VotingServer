@@ -1,12 +1,13 @@
 package com.example.votingserver;
 
+import background.MyMessage;
+import background.Processor;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -21,6 +22,9 @@ public class MainActivity extends Activity {
 	private BroadcastReceiver mIntentReceiver;
 	private int smsCount = 0;
 	private TextView[] tvs = new TextView[5];
+	
+	
+	private Processor processor = new Processor();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +56,7 @@ public class MainActivity extends Activity {
 		tvs[0] = (TextView) findViewById(R.id.sms0_tv);
 		tvs[1] = (TextView) findViewById(R.id.sms1_tv);
 		tvs[2] = (TextView) findViewById(R.id.sms2_tv);
-		tvs[3] = (TextView) findViewById(R.id.sms3_tv222);
+		tvs[3] = (TextView) findViewById(R.id.sms3_tv);
 		tvs[4] = (TextView) findViewById(R.id.sms4_tv);
 		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
 		mIntentReceiver = new BroadcastReceiver() {
@@ -67,11 +71,17 @@ public class MainActivity extends Activity {
 				String pNumber = msg.substring(0, msg.lastIndexOf(":"));
 				Log.i(TAG, "OnReceiver()");
 				Log.i(TAG, "body is "+body);
-				Log.i(TAG, "pNumber is "+pNumber);				
-				tvs[smsCount%5].setText(pNumber+":"+body);
-				smsCount++;
-				//TODO DETECT DUPLICATE
-				//TODO Add to background system
+				Log.i(TAG, "pNumber is "+pNumber);	
+				MyMessage newmm = new MyMessage(pNumber,body);
+				processor.addMessage(newmm);
+				String tvText = pNumber+":"+body;
+				if(processor.isExist(newmm)){
+					tvText = tvText+" (duplicated)";
+					tvs[smsCount%5].setText(tvText);
+				} else {
+					tvs[smsCount%5].setText(tvText);
+					smsCount++;					
+				}						
 			}
 		};
 		this.registerReceiver(mIntentReceiver, intentFilter);	
@@ -87,8 +97,8 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		super.onResume();
 		Log.i(TAG, "onResume()");
+		super.onResume();
 		
 	}
 	@Override
@@ -97,7 +107,7 @@ public class MainActivity extends Activity {
 		super.onStop();
 	}
 	protected void onDestory() {
-		Log.i(TAG, "onResume()");
+		Log.i(TAG, "onDestory()");
 		try{		
 			unregisterReceiver(mIntentReceiver);
 		}
