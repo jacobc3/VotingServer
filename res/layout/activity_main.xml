@@ -33,13 +33,13 @@
                     android:id="@+id/tabMain"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical">
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
                         android:layout_marginTop="41dp"
                         android:text="@string/incoming_tv"
                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -49,7 +49,8 @@
                         android:id="@+id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="21dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:orientation="vertical"
                         android:layout_gravity="center_horizontal">
 
@@ -57,7 +58,6 @@
                             android:id="@+id/sms0_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="17dp"
                             android:text="@string/incoming_tv" />
 
                         <TextView
@@ -87,10 +87,13 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/b_dupt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/dup_b"
-                        android:id="@+id/b_dupt" />
+                        android:textAlignment="center" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,6 +104,7 @@
 
                     <TextView
                         android:id="@+id/textView"
+                        android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setup_candidate_tv" />
@@ -109,8 +113,7 @@
                         android:id="@+id/t_cands"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="31dp"
-                        android:layout_marginTop="121dp"
+                        android:layout_marginTop="50dp"
                         android:ems="3"
                         android:inputType="number"
                         android:text="@string/number_t"
@@ -124,13 +127,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="23dp"
+                        android:layout_gravity="center_horizontal"
                         android:text="@string/start_b" />
 
                     <Button
                         android:id="@+id/b_stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="68dp"
+                        android:layout_gravity="center_horizontal"
                         android:text="@string/stop_b" />
 
                     <Button
