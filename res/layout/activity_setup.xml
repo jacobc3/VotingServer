@@ -25,7 +25,8 @@
         android:layout_marginTop="121dp"
         android:layout_toRightOf="@+id/textView2"
         android:ems="3"
-        android:inputType="number" >
+        android:inputType="number"
+        android:text="@string/number_t">
 
         <requestFocus />
     </EditText>
@@ -37,6 +38,7 @@
         android:layout_alignRight="@+id/candidate_et"
         android:layout_below="@+id/candidate_et"
         android:layout_marginTop="58dp"
-        android:text="@string/start_b" />
+        android:text="@string/start_b"
+        android:enabled="false" />
 
 </RelativeLayout>

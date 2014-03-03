@@ -8,89 +8,163 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView2"
+    <TabHost
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/filter_name" />
+        android:layout_height="fill_parent"
+        android:id="@+id/tabHost"
+        android:layout_centerHorizontal="true">
 
-    <Button
-        android:id="@+id/chart_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/start_b"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="62dp"
-        android:text="@string/chart_b" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/stop_b"
-        android:layout_below="@+id/stop_b"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="41dp"
-        android:text="@string/incoming_tv"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></TabWidget>
 
-    <Button
-        android:id="@+id/start_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="23dp"
-        android:text="@string/start_b" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/stop_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/start_b"
-        android:layout_alignBottom="@+id/start_b"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_marginRight="68dp"
-        android:text="@string/stop_b" />
+                <LinearLayout
+                    android:id="@+id/tabMain"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="21dp"
-        android:layout_toLeftOf="@+id/stop_b"
-        android:orientation="vertical" >
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginTop="41dp"
+                        android:text="@string/incoming_tv"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:id="@+id/sms0_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:text="@string/incoming_tv" />
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="21dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/sms1_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/incoming_tv" />
+                        <TextView
+                            android:id="@+id/sms0_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="17dp"
+                            android:text="@string/incoming_tv" />
 
-        <TextView
-            android:id="@+id/sms2_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/incoming_tv" />
+                        <TextView
+                            android:id="@+id/sms1_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/incoming_tv" />
 
-        <TextView
-            android:id="@+id/sms3_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/incoming_tv" />
+                        <TextView
+                            android:id="@+id/sms2_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/incoming_tv" />
 
-        <TextView
-            android:id="@+id/sms4_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/incoming_tv" />
-    </LinearLayout>
+                        <TextView
+                            android:id="@+id/sms3_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/incoming_tv" />
+
+                        <TextView
+                            android:id="@+id/sms4_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/incoming_tv" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dup_b"
+                        android:id="@+id/b_dupt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabServer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setup_candidate_tv" />
+
+                    <EditText
+                        android:id="@+id/t_cands"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="31dp"
+                        android:layout_marginTop="121dp"
+                        android:ems="3"
+                        android:inputType="number"
+                        android:text="@string/number_t"
+                        android:layout_gravity="center_horizontal">
+
+                        <requestFocus />
+                    </EditText>
+
+                    <Button
+                        android:id="@+id/b_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:text="@string/start_b" />
+
+                    <Button
+                        android:id="@+id/b_stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="68dp"
+                        android:text="@string/stop_b" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clear_b"
+                        android:id="@+id/b_clear"
+                        android:layout_gravity="center_horizontal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabChart"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/candidate_list"
+                        android:id="@+id/textView2"
+                        android:layout_gravity="center_horizontal" />
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/listView"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
 </RelativeLayout>
