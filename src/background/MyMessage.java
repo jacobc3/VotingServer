@@ -9,7 +9,7 @@ public class MyMessage {
 	}
 	
 	public boolean isDuplicated(MyMessage compareTo){
-		if(sender.equals(compareTo.sender) && content.equals(compareTo.content)){
+		if(sender.equals(compareTo.sender)){
 			return true;
 		}
 		return false;

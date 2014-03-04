@@ -57,6 +57,8 @@ public class MainActivity extends Activity{
         tabSpec.setIndicator("Chart");
         tabHost.addTab(tabSpec);
 
+
+
         /*
 		Log.i(TAG, "onCreate()");
         Button startB = (Button) findViewById(R.id.start_b);
@@ -82,6 +84,12 @@ public class MainActivity extends Activity{
 			}
 		});
 		*/
+
+        //Chart Tab
+        //Just create a list of all the candidates if the server has been started
+        final ArrayAdapter<Candidate>  adapter = new CandidateListAdapter();
+        candListView = (ListView) findViewById(R.id.listView);
+        candListView.setAdapter(adapter);
 
         //Main Tab
         //For the most part I didn't touch what you did, all i added was the if statement at the end to tell whether to count a vote or not
@@ -123,6 +131,7 @@ public class MainActivity extends Activity{
                             processor.voteFor(Integer.parseInt(body));
                         }
                     }
+                    adapter.notifyDataSetChanged();
                 }
 			}
 		};
@@ -170,7 +179,7 @@ public class MainActivity extends Activity{
             public void onClick(View view) {
                 processor.createCandidates(Integer.parseInt(numCands.getText().toString()));
                 processor.runServer();
-                populateList();
+                adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Voting Server has been started.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -190,17 +199,7 @@ public class MainActivity extends Activity{
                 Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_LONG).show();;
             }
         });
-
-        //Chart Tab
-        //Just create a list of all the candidates if the server has been started
-        candListView = (ListView) findViewById(R.id.listView);
 	}
-
-    private void populateList() {
-        ArrayAdapter<Candidate>  adapter = new CandidateListAdapter();
-            candListView.setAdapter(adapter);
-
-    }
 
     private class CandidateListAdapter extends ArrayAdapter<Candidate> {
         public CandidateListAdapter() {

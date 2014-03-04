@@ -24,10 +24,16 @@ public class Processor {
 	}
 
     public void createCandidates(int n) {
-        numCand = n;
-        for (int i = 1; i <= numCand; i++) {
-            listCand.add(new Candidate(i));
+        if (n > numCand) {
+            for (int i = numCand+1; i <= n; i++) {
+                listCand.add(new Candidate(i));
+            }
+        } else if (n < numCand) {
+            for (int i = numCand-1; i < numCand; i++) {
+                listCand.remove(i);
+            }
         }
+        numCand = n;
     }
 
     public ArrayList<Candidate> getCandidateList() {
