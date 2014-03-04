@@ -211,6 +211,8 @@ containing a value of this type.
         public static final int useDefaultMargins=0x7f010003;
     }
     public static final class color {
+        public static final int disable=0x7f060005;
+        public static final int enable=0x7f060004;
         /**  
     <color name="heavy">#A66500</color>
     <color name="more">#FF9C00</color>
@@ -307,12 +309,14 @@ containing a value of this type.
         public static final int candidate_list=0x7f07000b;
         public static final int candidate_t=0x7f07000c;
         public static final int chart_b=0x7f070007;
-        public static final int clearB=0x7f070011;
+        public static final int clearB=0x7f070013;
         public static final int clear_b=0x7f070005;
         public static final int dup_b=0x7f07000e;
-        public static final int filter_name=0x7f070010;
+        public static final int filter_name=0x7f070012;
         public static final int hello_world=0x7f070002;
         public static final int incoming_tv=0x7f070006;
+        public static final int num_cand=0x7f070010;
+        public static final int num_vote=0x7f070011;
         public static final int number_t=0x7f07000f;
         public static final int setup_candidate_tv=0x7f070009;
         public static final int start_b=0x7f070003;
