@@ -108,7 +108,7 @@ public class MainActivity extends Activity{
 				String msg = intent.getStringExtra("get_msg");
 
 				// Process the sms format and extract body & phoneNumber
-				msg = msg.replace("\n", "");
+                msg = msg.replace("\n", "");
 				String body = msg.substring(msg.lastIndexOf(":") + 1,
 						msg.length());
 				String pNumber = msg.substring(0, msg.lastIndexOf(":"));
