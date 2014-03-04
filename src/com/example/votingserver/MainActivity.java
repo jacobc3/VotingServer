@@ -143,8 +143,10 @@ public class MainActivity extends Activity{
             public void onClick(View view) {
                 processor.dupToggle();
                 if (processor.allowDupes()) {
+                    duptB.setBackgroundResource(R.color.enable);
                     Toast.makeText(getApplicationContext(), "Duplicates are allowed.", Toast.LENGTH_SHORT).show();
                 } else {
+                    duptB.setBackgroundResource(R.color.disable);
                     Toast.makeText(getApplicationContext(), "Duplicates are not allowed.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,8 +157,6 @@ public class MainActivity extends Activity{
         final Button startB = (Button) findViewById(R.id.b_start);
         final Button stopB = (Button) findViewById(R.id.b_stop);
         final Button clearB = (Button) findViewById(R.id.b_clear);
-        /* I wanted to add something that will grey out the start server button until a valid number is input
-           and grey out the stop button if the server has not yet started but I'll do that later
         numCands.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -165,20 +165,23 @@ public class MainActivity extends Activity{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                startB.setEnabled(!numCands.getText().toString().trim().isEmpty());
+                startB.setEnabled(!numCands.getText().toString().isEmpty());
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
             }
-        }); */
+        });
         //Start the server if the Start Server button has been clicked
         startB.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 processor.createCandidates(Integer.parseInt(numCands.getText().toString()));
                 processor.runServer();
+                startB.setEnabled(false);
+                stopB.setEnabled(true);
+                clearB.setEnabled(false);
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Voting Server has been started.", Toast.LENGTH_SHORT).show();
             }
@@ -189,6 +192,9 @@ public class MainActivity extends Activity{
             public void onClick(View view) {
                 processor.stopServer();
                 adapter.notifyDataSetChanged();
+                startB.setEnabled(true);
+                stopB.setEnabled(false);
+                clearB.setEnabled(true);
                 Toast.makeText(getApplicationContext(), "Voting Server has been stopped.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -198,6 +204,7 @@ public class MainActivity extends Activity{
             public void onClick(View view) {
                 listNums.clear();
                 processor.clearVotes();
+                clearB.setEnabled(false);
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_LONG).show();;
             }

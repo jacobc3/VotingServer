@@ -92,7 +92,10 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/dup_b"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:focusable="false"
+                        android:enabled="true"
+                        android:background="@color/disable" />
 
                 </LinearLayout>
 
@@ -128,21 +131,24 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="23dp"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/start_b" />
+                        android:text="@string/start_b"
+                        android:enabled="false" />
 
                     <Button
                         android:id="@+id/b_stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/stop_b" />
+                        android:text="@string/stop_b"
+                        android:enabled="false" />
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/clear_b"
                         android:id="@+id/b_clear"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_gravity="center_horizontal"
+                        android:enabled="false" />
 
                 </LinearLayout>
 
