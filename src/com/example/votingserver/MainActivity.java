@@ -24,6 +24,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity{
 	private static final String TAG = "MainActivity";
 	// TODO on destroy : auto stop and save previous result
@@ -31,6 +33,7 @@ public class MainActivity extends Activity{
 	private BroadcastReceiver mIntentReceiver;
 	private int smsCount = 0;
 	private TextView[] tvs = new TextView[5];
+    private ArrayList<String> listNums = new ArrayList<String>();
     ListView candListView;
 
 	
@@ -114,24 +117,22 @@ public class MainActivity extends Activity{
 				Log.i(TAG, "pNumber is "+pNumber);	
 				MyMessage newmm = new MyMessage(pNumber,body);
 				processor.addMessage(newmm);
-				String tvText = pNumber+":"+body;
-				if(processor.isExist(newmm)){
-					tvText = tvText+" (duplicated)";
-					tvs[smsCount%5].setText(tvText);
-				} else {
-					tvs[smsCount%5].setText(tvText);
-					smsCount++;
-				}
-                //Checks if the server is running and if it is, check  if the candidate is valid, then check if the vote is not a duplicate
-                if (processor.isRunning()) {
-                    int cand = Integer.parseInt(body);
-                    if (cand < processor.getNumCandidates()) {
-                        //if (!processor.isExist(newmm) || processor.allowDupes()) {
-                            processor.voteFor(Integer.parseInt(body));
-                        //}
+				String tvText = newmm.getSender()+":"+ newmm.getContent();
+                //String tvText = pn + ":" + cand;
+                if (listNums.contains(pNumber)) {
+				    tvText = tvText+" (duplicated)";
+                    if (Integer.parseInt(body) < processor.getNumCandidates() && processor.isRunning() &&processor.allowDupes()) {
+                        processor.voteFor(Integer.parseInt(body));
                     }
-                    adapter.notifyDataSetChanged();
+                } else {
+                    listNums.add(pNumber);
+                    if (Integer.parseInt(body) < processor.getNumCandidates() && processor.isRunning()) {
+                        processor.voteFor(Integer.parseInt(body));
+                    }
                 }
+                adapter.notifyDataSetChanged();
+				tvs[smsCount%5].setText(tvText);
+                smsCount++;
 			}
 		};
 		this.registerReceiver(mIntentReceiver, intentFilter);
@@ -195,6 +196,7 @@ public class MainActivity extends Activity{
         clearB.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                listNums.clear();
                 processor.clearVotes();
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_LONG).show();;

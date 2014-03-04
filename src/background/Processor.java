@@ -5,23 +5,29 @@ import java.util.ArrayList;
 public class Processor {
 	ArrayList<MyMessage> listMsg = new ArrayList<MyMessage>();
     ArrayList<Candidate> listCand = new ArrayList<Candidate>();
+    //ArrayList<Integer> listVoted = new ArrayList<Integer>();
     boolean run = false;
     int dup = 0;
     int numCand = 0;
 	
 	public void addMessage(MyMessage m){
-		if(!isExist(m)){
-			listMsg.add(m);
-		}
+		listMsg.add(m);
+     /*   int pn = Integer.parseInt(m.getSender());
+        if (!isDuplicate(m)) {
+            listVoted.add(pn);
+        }
 	}
-	public boolean isExist(MyMessage m){
-		for (MyMessage m2 : listMsg) {
-			if(m2.isDuplicated(m)){
-				return true;
-			}
-		}
-		return false;
-	}
+
+    public boolean isDuplicate(MyMessage m) {
+        boolean dupe = true;
+        int pn = Integer.parseInt(m.getSender());
+        for (int v : listVoted) {
+            if (v == pn) {
+                dupe = false;
+            }
+        }
+        return dupe; */
+    }
 
     public void createCandidates(int n) {
         if (n > numCand) {

@@ -7,11 +7,12 @@ public class MyMessage {
 		this.sender = aSender;
 		this.content = aContent;
 	}
-	
-	public boolean isDuplicated(MyMessage compareTo){
-		if(sender.equals(compareTo.sender)){
-			return true;
-		}
-		return false;
-	}
+
+    public String getSender() {
+        return sender;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }
