@@ -122,14 +122,13 @@ public class MainActivity extends Activity{
 					tvs[smsCount%5].setText(tvText);
 					smsCount++;
 				}
-
                 //Checks if the server is running and if it is, check  if the candidate is valid, then check if the vote is not a duplicate
                 if (processor.isRunning()) {
                     int cand = Integer.parseInt(body);
                     if (cand < processor.getNumCandidates()) {
-                        if (!processor.isExist(newmm) || processor.allowDupes()) {
+                        //if (!processor.isExist(newmm) || processor.allowDupes()) {
                             processor.voteFor(Integer.parseInt(body));
-                        }
+                        //}
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -188,6 +187,7 @@ public class MainActivity extends Activity{
             @Override
             public void onClick(View view) {
                 processor.stopServer();
+                adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Voting Server has been stopped.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -196,6 +196,7 @@ public class MainActivity extends Activity{
             @Override
             public void onClick(View view) {
                 processor.clearVotes();
+                adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_LONG).show();;
             }
         });
