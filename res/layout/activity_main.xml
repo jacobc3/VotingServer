@@ -97,13 +97,21 @@
                         android:enabled="true"
                         android:background="@color/disable" />
 
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clearm_b"
+                        android:id="@+id/b_clearm"
+                        android:layout_gravity="center_horizontal" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tabServer"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_gravity="right|bottom">
 
                     <TextView
                         android:id="@+id/textView"
@@ -149,6 +157,32 @@
                         android:id="@+id/b_clear"
                         android:layout_gravity="center_horizontal"
                         android:enabled="false" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/addc_b"
+                        android:id="@+id/b_addc" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remc_b"
+                        android:id="@+id/b_remc"
+                        android:layout_gravity="center_horizontal" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sortid_b"
+                        android:id="@+id/b_sortid" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sortv_b"
+                        android:id="@+id/b_sortv"
+                        android:layout_gravity="right" />
 
                 </LinearLayout>
 

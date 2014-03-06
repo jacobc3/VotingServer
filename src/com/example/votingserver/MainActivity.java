@@ -96,6 +96,7 @@ public class MainActivity extends Activity{
 
         //Main Tab
         //For the most part I didn't touch what you did, all i added was the if statement at the end to tell whether to count a vote or not
+        final int[] offset = {0};
 		tvs[0] = (TextView) findViewById(R.id.sms0_tv);
 		tvs[1] = (TextView) findViewById(R.id.sms1_tv);
 		tvs[2] = (TextView) findViewById(R.id.sms2_tv);
@@ -131,13 +132,14 @@ public class MainActivity extends Activity{
                     }
                 }
                 adapter.notifyDataSetChanged();
-				tvs[smsCount%5].setText(tvText);
+				tvs[smsCount%5+ offset[0]].setText(tvText);
                 smsCount++;
 			}
 		};
 		this.registerReceiver(mIntentReceiver, intentFilter);
         //This is a toggle for duplicates to help test our server
         final Button duptB = (Button) findViewById(R.id.b_dupt);
+        final Button clearmB = (Button) findViewById(R.id.b_clearm);
         duptB.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,12 +153,27 @@ public class MainActivity extends Activity{
                 }
             }
         });
+        clearmB.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvs[0].setText("");
+                tvs[1].setText("");
+                tvs[2].setText("");
+                tvs[3].setText("");
+                tvs[4].setText("");
+                offset[0] = smsCount % 5;
+            }
+        });
 
         //Server Tab
         final EditText numCands = (EditText) findViewById(R.id.t_cands);;
         final Button startB = (Button) findViewById(R.id.b_start);
         final Button stopB = (Button) findViewById(R.id.b_stop);
         final Button clearB = (Button) findViewById(R.id.b_clear);
+        final Button addB = (Button) findViewById(R.id.b_addc);
+        final Button removeB = (Button) findViewById(R.id.b_remc);
+        final Button sortByID = (Button) findViewById(R.id.b_sortid);
+        final Button sortByV = (Button) findViewById(R.id.b_sortv);
         numCands.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -177,7 +194,6 @@ public class MainActivity extends Activity{
         startB.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                processor.createCandidates(Integer.parseInt(numCands.getText().toString()));
                 processor.runServer();
                 startB.setEnabled(false);
                 stopB.setEnabled(true);
@@ -205,8 +221,51 @@ public class MainActivity extends Activity{
                 listNums.clear();
                 processor.clearVotes();
                 clearB.setEnabled(false);
+                listNums.clear();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_LONG).show();;
+                Toast.makeText(getApplicationContext(), "Votes have been cleared.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        addB.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int candID = Integer.parseInt(numCands.getText().toString());
+                if (processor.hasCandidate(candID) > -1) {
+                    Toast.makeText(getApplicationContext(), "Candidate "+ candID + " already exists.", Toast.LENGTH_SHORT).show();
+                } else {
+                    processor.addCandidate(candID);
+                    Toast.makeText(getApplicationContext(), "Candidate " + candID + " has been added.", Toast.LENGTH_SHORT).show();
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+        removeB.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int candIndex = processor.hasCandidate(Integer.parseInt(numCands.getText().toString()));
+                if (candIndex > -1) {
+                    processor.remCandidate(candIndex);
+                    Toast.makeText(getApplicationContext(), "Candidate " + numCands.getText().toString() + " has been removed.", Toast.LENGTH_SHORT).show();
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Candidate " + numCands.getText().toString() + " does not exist.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        sortByID.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                processor.sortByID();
+                Toast.makeText(getApplicationContext(), "Sorted by Candidate ID.", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+            }
+        });
+        sortByV.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                processor.sortByVote();
+                Toast.makeText(getApplicationContext(), "Sorted by number of votes.", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
             }
         });
 	}
@@ -223,9 +282,9 @@ public class MainActivity extends Activity{
             }
             Candidate currentCand = processor.getCandidateList().get(position);
             TextView candID = (TextView) view.findViewById(R.id.num_cand);
-            candID.setText(currentCand.getCandID());
+            candID.setText(Integer.toString(currentCand.getCandID()));
             TextView candVote = (TextView) view.findViewById(R.id.num_vote);
-            candVote.setText(currentCand.getNumVotes());
+            candVote.setText(Integer.toString(currentCand.getNumVotes()));
             return view;
         }
     }

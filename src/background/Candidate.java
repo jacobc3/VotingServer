@@ -17,11 +17,11 @@ public class Candidate {
         numVotes = 0;
     }
 
-    public String getCandID() {
-        return Integer.toString(candID);
+    public int getCandID() {
+        return candID;
     }
 
-    public String getNumVotes() {
-        return Integer.toString(numVotes);
+    public int getNumVotes() {
+        return numVotes;
     }
 }

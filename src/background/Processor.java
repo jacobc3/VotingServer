@@ -26,7 +26,7 @@ public class Processor {
                 dupe = false;
             }
         }
-        return dupe; */
+        return dupe;*/
     }
 
     public void createCandidates(int n) {
@@ -81,6 +81,52 @@ public class Processor {
     public void clearVotes() {
         for (Candidate c : listCand) {
             c.clearVotes();
+        }
+    }
+
+    public int hasCandidate(int candID) {
+        int index = -1;
+        for (int i = 0; i < numCand; i++) {
+            if (listCand.get(i).getCandID() == candID) {
+                index = i;
+            }
+        } return index;
+    }
+
+    public void addCandidate(int candID) {
+        listCand.add(new Candidate(candID));
+        numCand++;
+    }
+
+
+    public void remCandidate(int candIndex) {
+        listCand.remove(candIndex);
+        numCand--;
+    }
+
+    public void sortByID() {
+        for (int i = 0; i < numCand; i++) {
+            int min = i;
+            for (int j = i; j < numCand; j++) {
+                if (listCand.get(min).getCandID() > listCand.get(j).getCandID()) {
+                    min = j;
+                }
+            } Candidate c = listCand.get(min);
+            listCand.set(min, listCand.get(i));
+            listCand.set(i, c);
+        }
+    }
+
+    public void sortByVote() {
+        for (int i = 0; i < numCand; i++) {
+            int min = i;
+            for (int j = i; j < numCand; j++) {
+                if (listCand.get(min).getNumVotes() > listCand.get(j).getNumVotes()) {
+                    min = j;
+                }
+            } Candidate c = listCand.get(min);
+            listCand.set(min, listCand.get(i));
+            listCand.set(i, c);
         }
     }
 }
