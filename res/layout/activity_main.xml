@@ -9,25 +9,26 @@
     tools:context=".MainActivity" >
 
     <TabHost
+        android:id="@+id/tabHost"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/tabHost"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"></TabWidget>
+                android:layout_height="wrap_content" >
+            </TabWidget>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent" >
 
                 <LinearLayout
                     android:id="@+id/tabMain"
@@ -40,19 +41,19 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="41dp"
                         android:text="@string/incoming_tv"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:layout_gravity="center_horizontal" />
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <LinearLayout
                         android:id="@+id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="15dp"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical" >
 
                         <TextView
                             android:id="@+id/sms0_tv"
@@ -83,130 +84,143 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/incoming_tv" />
-
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/b_dupt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@color/disable"
+                        android:enabled="true"
+                        android:focusable="false"
                         android:gravity="center"
                         android:text="@string/dup_b"
-                        android:textAlignment="center"
-                        android:focusable="false"
-                        android:enabled="true"
-                        android:background="@color/disable" />
+                        android:textAlignment="center" />
 
                     <Button
+                        android:id="@+id/b_clearm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/clearm_b"
-                        android:id="@+id/b_clearm"
-                        android:layout_gravity="center_horizontal" />
-
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/clearm_b" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tabServer"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"
-                    android:layout_gravity="right|bottom">
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:text="@string/setup_candidate_tv" />
 
                     <EditText
                         android:id="@+id/t_cands"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50dp"
                         android:ems="3"
                         android:inputType="number"
-                        android:text="@string/number_t"
-                        android:layout_gravity="center_horizontal">
+                        android:text="@string/number_t" >
 
                         <requestFocus />
                     </EditText>
 
-                    <Button
-                        android:id="@+id/b_start"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/start_b"
-                        android:enabled="false" />
+                        android:layout_gravity="center_horizontal" >
+
+                        <Button
+                            android:id="@+id/b_addc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addc_b" />
+
+                        <Button
+                            android:id="@+id/b_remc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/remc_b" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" >
+
+                        <Button
+                            android:id="@+id/b_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:enabled="false"
+                            android:text="@string/start_b" />
+
+                        <Button
+                            android:id="@+id/b_stop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:enabled="false"
+                            android:text="@string/stop_b" />
+                    </LinearLayout>
 
                     <Button
-                        android:id="@+id/b_stop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/stop_b"
-                        android:enabled="false" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/clear_b"
                         android:id="@+id/b_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:text="@string/clear_b" />
 
-                    <Button
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/addc_b"
-                        android:id="@+id/b_addc" />
+                        android:layout_gravity="center" >
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/remc_b"
-                        android:id="@+id/b_remc"
-                        android:layout_gravity="center_horizontal" />
+                        <Button
+                            android:id="@+id/b_sortid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/sortid_b" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sortid_b"
-                        android:id="@+id/b_sortid" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sortv_b"
-                        android:id="@+id/b_sortv"
-                        android:layout_gravity="right" />
-
+                        <Button
+                            android:id="@+id/b_sortv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/sortv_b" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tabChart"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical">
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_gravity="center_horizontal"
                         android:text="@string/candidate_list"
-                        android:id="@+id/textView2"
-                        android:layout_gravity="center_horizontal" />
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <ListView
+                        android:id="@+id/listView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/listView"
                         android:layout_gravity="center_horizontal" />
                 </LinearLayout>
-
             </FrameLayout>
         </LinearLayout>
     </TabHost>

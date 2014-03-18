@@ -1,8 +1,7 @@
 package com.example.votingserver;
 
-import background.Candidate;
-import background.MyMessage;
-import background.Processor;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,8 +22,9 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
+import background.Candidate;
+import background.MyMessage;
+import background.Processor;
 
 public class MainActivity extends Activity{
 	private static final String TAG = "MainActivity";
