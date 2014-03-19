@@ -74,8 +74,8 @@ public class Processor {
             return true;
     }
 
-    public void voteFor(int cand) {
-        listCand.get(cand-1).voteCandidate();
+    public void voteFor(int index) {
+        listCand.get(index).voteCandidate();
     }
 
     public void clearVotes() {
@@ -121,7 +121,7 @@ public class Processor {
         for (int i = 0; i < numCand; i++) {
             int min = i;
             for (int j = i; j < numCand; j++) {
-                if (listCand.get(min).getNumVotes() > listCand.get(j).getNumVotes()) {
+                if (listCand.get(min).getNumVotes() < listCand.get(j).getNumVotes()) {
                     min = j;
                 }
             } Candidate c = listCand.get(min);

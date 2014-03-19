@@ -3,11 +3,13 @@ package com.example.votingserver;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -102,8 +104,9 @@ public class MainActivity extends Activity{
 		tvs[2] = (TextView) findViewById(R.id.sms2_tv);
 		tvs[3] = (TextView) findViewById(R.id.sms3_tv);
 		tvs[4] = (TextView) findViewById(R.id.sms4_tv);
+        final SmsManager smsManager = SmsManager.getDefault();
 		IntentFilter intentFilter = new IntentFilter("SmsMessage.intent.MAIN");
-		mIntentReceiver = new BroadcastReceiver() {
+        mIntentReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				String msg = intent.getStringExtra("get_msg");
@@ -120,16 +123,25 @@ public class MainActivity extends Activity{
 				processor.addMessage(newmm);
 				String tvText = newmm.getSender()+":"+ newmm.getContent();
                 //String tvText = pn + ":" + cand;
-                if (listNums.contains(pNumber)) {
-				    tvText = tvText+" (duplicated)";
-                    if (Integer.parseInt(body) < processor.getNumCandidates() && processor.isRunning() &&processor.allowDupes()) {
-                        processor.voteFor(Integer.parseInt(body));
+                int vote = processor.hasCandidate(Integer.parseInt(body));
+                if (vote > -1) {
+                    if (listNums.contains(pNumber)) {
+                        tvText = tvText+" (duplicated)";
+                        if (processor.isRunning() && processor.allowDupes()) {
+                            processor.voteFor(vote);
+                            smsManager.sendTextMessage(pNumber, null, "You have already voted but duplicate votes are current allowed.  Thank you for voting.", null, null);
+                        } else if (processor.isRunning() && !processor.allowDupes()) {
+                            smsManager.sendTextMessage(pNumber, null, "Sorry but you have already voted.", null, null);
+                        }
+                    } else {
+                        listNums.add(pNumber);
+                        if (processor.isRunning()) {
+                            processor.voteFor(vote);
+                            smsManager.sendTextMessage(pNumber, null, "Your vote has been tallied.  Thank you for voting.", null, null);
+                        }
                     }
                 } else {
-                    listNums.add(pNumber);
-                    if (Integer.parseInt(body) < processor.getNumCandidates() && processor.isRunning()) {
-                        processor.voteFor(Integer.parseInt(body));
-                    }
+                    smsManager.sendTextMessage(pNumber, null, "Sorry but the candidate you are trying to vote for does not exist.", null, null);
                 }
                 adapter.notifyDataSetChanged();
 				tvs[smsCount%5+ offset[0]].setText(tvText);
